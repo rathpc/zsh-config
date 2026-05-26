@@ -1,0 +1,33 @@
+# User configuration (do not commit personal settings)
+.zsh_config/local/
+.zsh_config/secrets/
+
+# Backups and temporary files
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (if needed for tooling)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+*.log
