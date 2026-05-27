@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+# Editor configuration
+export EDITOR="vim"
+export KUBE_EDITOR="vim"
+export VISUAL="vim"
+
+# Go configuration
+export GOROOT="/usr/local/go"
+export GOPATH="$HOME/dev/go"
+
+# Node.js configuration
+export NODE_ENV="development"
+export NODE_OPTIONS="--max-old-space-size=4096"
+export NVM_DIR="$HOME/.nvm"
+
+# Pnpm configuration
+export PNPM_HOME="$HOME/.pnpm"
+
+# Kubernetes configuration
+export KUBECONFIG="$HOME/.kube/config"
+export KUBE_PS1_ENABLED="on"
+
+# Docker configuration
+export DOCKER_SCAN_SUGGEST="false"
+
+# History configuration
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=50000
+export SAVEHIST=10000
+
+# Locale configuration
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8

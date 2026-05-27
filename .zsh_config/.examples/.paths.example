@@ -1,0 +1,68 @@
+#!/usr/bin/env zsh
+# .paths.example — reference for customizing ~/.zsh_config/.paths
+#
+# PATH manipulation. Each block guards with `[[ -d ... ]]` so missing
+# directories don't pollute PATH. Order matters: earlier prepends win,
+# so put higher-priority tools (Homebrew, language version managers)
+# closer to the bottom of this file.
+#
+# This file is sourced after `.exports`, before `.tools`, so it can
+# rely on variables `.exports` sets (e.g. `$PNPM_HOME`, `$GOPATH`) and
+# ensure tool initialization in `.tools` can find Homebrew-installed
+# binaries via `command -v`.
+
+# ──────────────────────────────────────────────────────────────────────────
+# Local Binaries
+# ──────────────────────────────────────────────────────────────────────────
+
+if [[ -d "$HOME/.local/bin" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [[ -d "$HOME/bin" ]]; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+# ──────────────────────────────────────────────────────────────────────────
+# Go
+# ──────────────────────────────────────────────────────────────────────────
+
+if [[ -d "$GOPATH/bin" ]]; then
+    export PATH="$GOPATH/bin:$GOROOT/bin:~/go/bin:$PATH"
+fi
+
+# ──────────────────────────────────────────────────────────────────────────
+# Node / pnpm
+# ──────────────────────────────────────────────────────────────────────────
+
+# pnpm global bin (PNPM_HOME is set in .exports)
+if [[ -n "$PNPM_HOME" ]] && [[ -d "$PNPM_HOME" ]]; then
+    export PATH="$PNPM_HOME:$PATH"
+fi
+
+# ──────────────────────────────────────────────────────────────────────────
+# Kubernetes
+# ──────────────────────────────────────────────────────────────────────────
+
+# krew (kubectl plugin manager)
+if [[ -d "$HOME/.krew" ]]; then
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
+
+# ──────────────────────────────────────────────────────────────────────────
+# Homebrew
+# ──────────────────────────────────────────────────────────────────────────
+
+# Homebrew (Apple Silicon)
+if [[ -d "/opt/homebrew/bin" ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+# Intel Macs / Linuxbrew
+if [[ -d "/usr/local/sbin" ]]; then
+    export PATH="/usr/local/sbin:$PATH"
+fi
+
+if [[ -d "/usr/local/bin" ]]; then
+    export PATH="/usr/local/bin:$PATH"
+fi

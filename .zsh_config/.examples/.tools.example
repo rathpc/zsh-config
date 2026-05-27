@@ -1,0 +1,47 @@
+#!/usr/bin/env zsh
+# .tools.example — reference for customizing ~/.zsh_config/.tools
+#
+# Tool-specific initialization: version managers, completions, shell hooks.
+# Each block guards with `command -v` or `[[ -d ... ]]` so missing tools
+# don't break shell startup.
+#
+# Sourced last (after `.aliases`, `.exports`, `.paths`), so all paths,
+# exports, and aliases are available.
+
+# ──────────────────────────────────────────────────────────────────────────
+# NVM — Node Version Manager
+# ──────────────────────────────────────────────────────────────────────────
+
+if [[ -d "$HOME/.nvm" ]]; then
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
+fi
+
+# ──────────────────────────────────────────────────────────────────────────
+# Command Completions
+# ──────────────────────────────────────────────────────────────────────────
+
+# kubectl
+if command -v kubectl &> /dev/null; then
+    source <(kubectl completion zsh)
+    complete -F __start_kubectl k    # mirror completion onto the `k` alias
+fi
+
+# docker
+if command -v docker &> /dev/null; then
+    source <(docker completion zsh)
+    complete -F _docker d # mirror completion onto the `d` alias
+    complete -F _docker_compose dc # mirror completion onto the `dc` alias
+fi
+
+# kubectx / kubens
+if command -v kubectx &> /dev/null; then
+    compdef _kubectx kubectx
+    compdef _kubectx kubens
+fi
+
+# 1Password CLI
+if command -v op &> /dev/null; then
+    eval "$(op completion zsh)"
+    compdef _op op
+fi

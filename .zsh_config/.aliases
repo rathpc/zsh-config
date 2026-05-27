@@ -1,0 +1,64 @@
+#!/usr/bin/env zsh
+# pnpm aliases
+alias p="pnpm"
+alias pi="pnpm install"
+alias pr="pnpm run"
+alias prd="pnpm run dev"
+alias prb="pnpm run build"
+alias prt="pnpm run test"
+alias prw="pnpm run test:watch"
+
+# git aliases
+alias g="git"
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gpl="git pull"
+alias gb="git branch"
+alias gco="git checkout"
+alias gd="git diff"
+alias gl="git log --oneline -n 10"
+alias gx="git reset --hard"
+
+# docker aliases
+alias d="docker"
+alias dc="docker compose"
+alias dcu="docker compose up"
+alias dcd="docker compose down"
+alias dcs="docker compose stop"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+
+# kubernetes aliases
+alias k="kubectl"
+alias kg="kubectl get"
+alias kgp="kubectl get pods"
+alias kgn="kubectl get nodes"
+alias kgs="kubectl get services"
+alias kd="kubectl describe"
+alias kdp="kubectl describe pod"
+alias kl="kubectl logs"
+alias kex="kubectl exec"
+alias kctx="kubectx"
+alias kns="kubens"
+
+# directory navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+# utility aliases
+alias ll="ls -lah"
+alias la="ls -A"
+alias l="ls -CF"
+alias h="history"
+alias c="clear"
+alias reload="source ~/.zshrc"
+alias path="print -l ${(s.:.)PATH}"
+alias myip="curl -s ifconfig.me"
+
+# opload alias — injects secrets from 1Password (Optional)
+alias opload='eval "$(op inject --in-file=$HOME/.zsh_config/.secrets)"'

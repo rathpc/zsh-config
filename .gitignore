@@ -2,9 +2,12 @@
 .zsh_config/local/
 .zsh_config/secrets/
 
-# Backups and temporary files
+# Backups from install script (timestamped: .zsh_config.bak.YYYYMMDD-HHMMSS)
 *.bak
+*.bak.*
 *.backup
+
+# Editor swap files
 *.swp
 *.swo
 *~

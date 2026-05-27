@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+# Go
+if [[ -d "$GOPATH/bin" ]]; then
+    export PATH="$GOPATH/bin:$GOROOT/bin:~/go/bin:$PATH"
+fi
+
+# Homebrew sbin
+if [[ -d "/usr/local/sbin" ]]; then
+    export PATH="/usr/local/sbin:$PATH"
+fi
+
+# Homebrew bin (Apple Silicon)
+if [[ -d "/opt/homebrew/bin" ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+# pnpm global bin
+if [[ -n "$PNPM_HOME" ]] && [[ -d "$PNPM_HOME" ]]; then
+    export PATH="$PNPM_HOME:$PATH"
+fi
+
+# krew (kubectl plugins)
+if [[ -d "$HOME/.krew" ]]; then
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
+
+# Local user bin
+if [[ -d "$HOME/.local/bin" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Ensure /usr/local/bin comes before system paths
+export PATH="/usr/local/bin:$PATH"

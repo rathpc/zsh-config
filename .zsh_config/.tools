@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+# NVM initialization
+if [[ -d "$HOME/.nvm" ]]; then
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
+fi
+
+# kubectl completion
+if command -v kubectl &> /dev/null; then
+    source <(kubectl completion zsh)
+    complete -F __start_kubectl k
+fi
+
+# docker completion
+if command -v docker &> /dev/null; then
+    source <(docker completion zsh)
+    complete -F _docker d
+    complete -F _docker_compose dc
+fi
+
+# krew (kubectl plugins)
+if [[ -d "$HOME/.krew" ]]; then
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
+
+# kubectx/kubens setup
+if command -v kubectx &> /dev/null; then
+    compdef _kubectx kubectx
+    compdef _kubectx kubens
+fi
+
+# op (1Password CLI) completion
+if command -v op &> /dev/null; then
+    eval "$(op completion zsh)"
+    compdef _op op
+fi

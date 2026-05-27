@@ -1,0 +1,60 @@
+#!/usr/bin/env zsh
+# .exports.example — reference for customizing ~/.zsh_config/.exports
+#
+# Non-secret environment variables. Anything sensitive (API tokens,
+# passwords, signing keys) belongs in `.secrets` (1Password) or another
+# secrets manager — NOT here.
+#
+# This file is sourced after `.aliases`, before `.paths` and `.tools`, so
+# variables defined here are available to PATH manipulation and tool
+# initialization.
+
+# ──────────────────────────────────────────────────────────────────────────
+# Editor
+# ──────────────────────────────────────────────────────────────────────────
+
+export EDITOR="vim"        # default editor for git, crontab, etc.
+export VISUAL="vim"        # full-screen editor
+export KUBE_EDITOR="vim"   # editor invoked by `kubectl edit`
+
+# ──────────────────────────────────────────────────────────────────────────
+# Language Config
+# ──────────────────────────────────────────────────────────────────────────
+
+# Go
+export GOROOT="/usr/local/go"
+export GOPATH="$HOME/dev/go"
+
+# Node.js
+export NODE_ENV="development"
+export NODE_OPTIONS="--max-old-space-size=4096"
+export NVM_DIR="$HOME/.nvm"
+
+# pnpm
+export PNPM_HOME="$HOME/.pnpm"
+
+# ──────────────────────────────────────────────────────────────────────────
+# Development
+# ──────────────────────────────────────────────────────────────────────────
+
+# Kubernetes
+export KUBECONFIG="$HOME/.kube/config"
+export KUBE_PS1_ENABLED="on"   # show kube context in prompt (if kube-ps1 installed)
+
+# Docker
+export DOCKER_SCAN_SUGGEST="false"
+
+# ──────────────────────────────────────────────────────────────────────────
+# Locale
+# ──────────────────────────────────────────────────────────────────────────
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# ──────────────────────────────────────────────────────────────────────────
+# History
+# ──────────────────────────────────────────────────────────────────────────
+
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=50000
+export SAVEHIST=10000
